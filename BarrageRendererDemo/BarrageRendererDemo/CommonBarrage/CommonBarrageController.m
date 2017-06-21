@@ -40,9 +40,10 @@
     [self.view sendSubviewToBack:_renderer.view];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLayoutSubviews
 {
-    [super viewDidAppear:animated];
+    [super viewDidLayoutSubviews];
+    _renderer.view.frame = self.view.bounds;
 }
 
 - (void)startMockingBarrageMessage

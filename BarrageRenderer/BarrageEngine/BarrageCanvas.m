@@ -40,15 +40,10 @@
     return self;
 }
 
-- (void)layoutSubviews
+- (void)setFrame:(CGRect)frame
 {
-    [super layoutSubviews];
-    if (self.superview) {
-        CGRect frame = UIEdgeInsetsInsetRect(self.superview.bounds, self.margin);
-        if (!CGRectEqualToRect(self.frame, frame)) {
-            self.frame = frame;
-        }
-    }
+    [super setFrame:frame];
+    self.bounds = UIEdgeInsetsInsetRect(frame, self.margin);
 }
 
 - (void)setMargin:(UIEdgeInsets)margin
@@ -56,7 +51,9 @@
     if(!UIEdgeInsetsEqualToEdgeInsets(margin, _margin))
     {
         _margin = margin;
+        self.layoutMargins = margin;
         [self setNeedsLayout];
+        [self layoutIfNeeded];
     }
 }
 
